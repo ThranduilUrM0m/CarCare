@@ -12,8 +12,22 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.json?$/,
+        loader: 'json'
+      },
+      {
         test: /\.css$/,
         use: [ 'style-loader', 'css-loader' ]
+      },
+      {
+        test: /\.(png|jp(e*)g|svg)$/,
+        use: [{
+            loader: 'url-loader',
+            options: {
+                limit: 8000,
+                name: 'media/[hash]-[name].[ext]'
+            }
+        }]
       },
       {
         test: /\.js$/,
